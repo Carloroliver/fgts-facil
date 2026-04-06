@@ -1,0 +1,264 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// LEADS
+// ============================================
+model Lead {
+  id             String            @id @default(cuid())
+  phone          String            @unique
+  name           String?
+  cpf            String?           @unique
+  birthDate      DateTime?
+  email          String?
+  pixKey         String?
+  pixBank        String?
+  fgtsBalance    Decimal?          @db.Decimal(12, 2)
+  yearsToAdvance Int?
+  isNegativado   Boolean?
+  isClt          Boolean?
+  hasSaqueAniv   Boolean?
+
+  status       LeadStatus       @default(NEW)
+  source       LeadSource       @default(WHATSAPP)
+  currentStage ConversationStage @default(WELCOME)
+
+  utmSource   String?
+  utmMedium   String?
+  utmCampaign String?
+  utmContent  String?
+  adId        String?
+
+  lastMessageAt DateTime?
+  assignedTo    String?
+
+  conversations Conversation[]
+  submissions   PartnerSubmission[]
+  events        LeadEvent[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+  @@index([currentStage])
+  @@index([createdAt])
+}
+
+enum LeadStatus {
+  NEW
+  QUALIFYING
+  QUALIFIED
+  COLLECTING_DATA
+  DATA_COMPLETE
+  SUBMITTED
+  ANALYZING
+  APPROVED
+  REJECTED
+  CONTRACTED
+  PAID
+  CANCELLED
+  INACTIVE
+}
+
+enum ConversationStage {
+  WELCOME
+  QUALIFICATION_CLT
+  QUALIFICATION_SAQUE_ANIV
+  FGTS_BALANCE
+  SIMULATION
+  DATA_COLLECTION_NAME
+  DATA_COLLECTION_CPF
+  DATA_COLLECTION_BIRTH
+  DATA_COLLECTION_PIX
+  CONFIRMATION
+  SUBMISSION
+  WAITING_RESULT
+  RESULT_APPROVED
+  RESULT_REJECTED
+  FOLLOW_UP
+  HUMAN_TAKEOVER
+}
+
+enum LeadSource {
+  WHATSAPP
+  LANDING_PAGE
+  INSTAGRAM
+  FACEBOOK
+  MANUAL
+}
+
+// ============================================
+// CONVERSAS / MENSAGENS
+// ============================================
+model Conversation {
+  id        String    @id @default(cuid())
+  leadId    String
+  lead      Lead      @relation(fields: [leadId], references: [id])
+  messages  Message[]
+  isActive  Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([leadId])
+}
+
+model Message {
+  id             String                @id @default(cuid())
+  conversationId String
+  conversation   Conversation          @relation(fields: [conversationId], references: [id])
+  direction      MessageDirection
+  content        String
+  messageType    MessageType           @default(TEXT)
+  externalId     String?
+  status         MessageDeliveryStatus @default(SENT)
+  claudeTokensIn  Int?
+  claudeTokensOut Int?
+
+  createdAt DateTime @default(now())
+
+  @@index([conversationId])
+  @@index([createdAt])
+}
+
+enum MessageDirection {
+  INBOUND
+  OUTBOUND
+}
+
+enum MessageType {
+  TEXT
+  IMAGE
+  DOCUMENT
+  AUDIO
+}
+
+enum MessageDeliveryStatus {
+  SENT
+  DELIVERED
+  READ
+  FAILED
+}
+
+// ============================================
+// SUBMISSOES A PARCEIROS
+// ============================================
+model PartnerSubmission {
+  id              String           @id @default(cuid())
+  leadId          String
+  lead            Lead             @relation(fields: [leadId], references: [id])
+  partner         Partner
+  externalId      String?
+  status          SubmissionStatus @default(PENDING)
+  requestPayload  Json?
+  responsePayload Json?
+  approvedAmount  Decimal?         @db.Decimal(12, 2)
+  interestRate    Decimal?         @db.Decimal(5, 4)
+  commission      Decimal?         @db.Decimal(12, 2)
+  errorMessage    String?
+  attempts        Int              @default(0)
+  lastAttemptAt   DateTime?
+  resolvedAt      DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([leadId])
+  @@index([partner, status])
+}
+
+enum Partner {
+  CREDLIBER
+  ICRED
+  CREDSPOT
+}
+
+enum SubmissionStatus {
+  PENDING
+  SUBMITTED
+  PROCESSING
+  APPROVED
+  REJECTED
+  ERROR
+  EXPIRED
+}
+
+// ============================================
+// EVENTOS
+// ============================================
+model LeadEvent {
+  id        String   @id @default(cuid())
+  leadId    String
+  lead      Lead     @relation(fields: [leadId], references: [id])
+  type      String
+  data      Json?
+  createdAt DateTime @default(now())
+
+  @@index([leadId])
+  @@index([type])
+  @@index([createdAt])
+}
+
+// ============================================
+// CAMPANHAS META ADS
+// ============================================
+model AdCampaign {
+  id             String   @id @default(cuid())
+  metaCampaignId String?  @unique
+  metaAdSetId    String?
+  metaAdId       String?
+  name           String
+  copyHeadline   String?
+  copyBody       String?
+  status         AdStatus @default(DRAFT)
+  budget         Decimal  @db.Decimal(10, 2)
+  impressions    Int      @default(0)
+  clicks         Int      @default(0)
+  leads          Int      @default(0)
+  spent          Decimal  @default(0) @db.Decimal(10, 2)
+  cpl            Decimal? @db.Decimal(10, 2)
+  autoOptimize   Boolean  @default(true)
+  maxCpl         Decimal? @db.Decimal(10, 2)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum AdStatus {
+  DRAFT
+  ACTIVE
+  PAUSED
+  COMPLETED
+}
+
+// ============================================
+// CONFIGURACOES
+// ============================================
+model SystemConfig {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @updatedAt
+}
+
+// ============================================
+// ADMIN
+// ============================================
+model AdminUser {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  name         String
+  role         AdminRole @default(OPERATOR)
+  createdAt    DateTime  @default(now())
+}
+
+enum AdminRole {
+  OWNER
+  OPERATOR
+  VIEWER
+}
