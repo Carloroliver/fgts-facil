@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antecipe seu FGTS hoje | Dinheiro na conta em minutos | FGTSFácil</title>
+<meta name="description" content="Antecipe até 10 anos do seu FGTS sem burocracia. CPF negativado não é problema. Dinheiro via PIX em minutos. Simule grátis!">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #00C16A;
+    --green-dark: #009950;
+    --green-light: #E6FAF1;
+    --dark: #0A1628;
+    --dark2: #162035;
+    --dark3: #1a2744;
+    --text: #1a1a2e;
+    --muted: #5A6A85;
+    --white: #ffffff;
+    --border: rgba(0,0,0,0.08);
+    --gold: #FFD700;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--dark);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* BARRA DE URGÊNCIA */
+  .urgency-bar {
+    background: linear-gradient(90deg, #009950, #00C16A, #009950);
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--dark);
+    letter-spacing: 0.3px;
+  }
+
+  .urgency-bar span { font-weight: 800; }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* SCROLL PROGRESS */
+  .scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: var(--green);
+    z-index: 9999;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 8px rgba(0,193,106,0.6);
+  }
+
+  /* HEADER */
+  header {
+    background: var(--dark2);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+  }
+
+  .logo {
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--green);
+    letter-spacing: -0.5px;
+  }
+
+  .logo span { color: var(--white); }
+
+  .header-cta {
+    background: var(--green);
+    color: var(--dark);
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 10px 20px;
+    border-radius: 100px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s, background 0.15s;
+  }
+
+  .header-cta:hover { background: #00e07a; transform: scale(1.03); }
+
+  /* HERO */
+  .hero {
+    padding: 64px 24px 56px;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(ellipse, rgba(0,193,106,0.14) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,193,106,0.12);
+    border: 1px solid rgba(0,193,106,0.25);
+    color: var(--green);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.6s ease-out;
+  }
+
+  .dot-pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero h1 {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(34px, 6vw, 56px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+    margin-bottom: 20px;
+    animation: fadeUp 0.6s ease-out 0.1s both;
+  }
+
+  .hero h1 .highlight {
+    color: var(--green);
+    position: relative;
+  }
+
+  .hero h1 .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: rgba(0,193,106,0.3);
+    border-radius: 3px;
+  }
+
+  .hero > p {
+    font-size: 18px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.6;
+    margin-bottom: 36px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeUp 0.6s ease-out 0.2s both;
+  }
+
+  /* CTA BUTTON */
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--green);
+    color: var(--dark);
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    padding: 18px 40px;
+    border-radius: 100px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s, background 0.15s;
+    box-shadow: 0 0 40px rgba(0,193,106,0.35);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-cta::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 40%;
+    height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transform: skewX(-20deg);
+    animation: btnShine 3s infinite;
+  }
+
+  @keyframes btnShine {
+    0%, 100% { left: -60%; }
+    50% { left: 120%; }
+  }
+
+  .btn-cta:hover { background: #00e07a; transform: scale(1.03); }
+  .btn-cta:active { transform: scale(0.98); }
+  .btn-cta svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+  .hero-cta-wrap {
+    animation: fadeUp 0.6s ease-out 0.3s both;
+  }
+
+  /* SOCIAL PROOF COUNTER */
+  .social-proof {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    animation: fadeUp 0.6s ease-out 0.4s both;
+  }
+
+  .social-proof .avatars {
+    display: flex;
+    margin-right: 4px;
+  }
+
+  .social-proof .avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid var(--dark);
+    margin-left: -8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .social-proof .avatar:first-child { margin-left: 0; }
+  .avatar-1 { background: #4A90D9; }
+  .avatar-2 { background: #E9573F; }
+  .avatar-3 { background: #8CC152; }
+  .avatar-4 { background: #F6BB42; }
+  .avatar-5 { background: linear-gradient(135deg, var(--green), var(--green-dark)); color: var(--dark); font-size: 9px; }
+
+  .live-counter {
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  /* TRUST BADGES */
+  .trust-badges {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    flex-wrap: wrap;
+    animation: fadeUp 0.6s ease-out 0.5s both;
+  }
+
+  .trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 500;
+  }
+
+  .trust-badge svg {
+    width: 16px;
+    height: 16px;
+    opacity: 0.5;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 64px 24px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--green);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .section h2 {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 40px;
+  }
+
+  /* REVEAL ANIMATION */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* SIMULADOR */
+  .simulador-card {
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px;
+    padding: 36px;
+    position: relative;
+  }
+
+  .sim-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--green);
+    color: var(--dark);
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 6px 20px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  .sim-label {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .slider-wrapper {
+    margin-bottom: 32px;
+  }
+
+  input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.1);
+    outline: none;
+    margin-bottom: 12px;
+    cursor: pointer;
+  }
+
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--green);
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(0,193,106,0.5);
+    transition: box-shadow 0.2s;
+  }
+
+  input[type=range]::-webkit-slider-thumb:hover {
+    box-shadow: 0 0 20px rgba(0,193,106,0.7);
+  }
+
+  input[type=range]::-moz-range-thumb {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--green);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 12px rgba(0,193,106,0.5);
+  }
+
+  .slider-value {
+    font-family: 'Sora', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--white);
+    transition: color 0.2s;
+  }
+
+  .sim-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.07);
+    margin: 28px 0;
+  }
+
+  .sim-resultado {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .sim-item {
+    background: rgba(255,255,255,0.04);
+    border-radius: 14px;
+    padding: 20px;
+  }
+
+  .sim-item .label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 6px;
+  }
+
+  .sim-item .value {
+    font-family: 'Sora', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .sim-item.destaque {
+    background: rgba(0,193,106,0.12);
+    border: 1px solid rgba(0,193,106,0.25);
+    grid-column: 1 / -1;
+  }
+
+  .sim-item.destaque .value {
+    color: var(--green);
+    font-size: 32px;
+  }
+
+  .btn-sim {
+    margin-top: 28px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .sim-disclaimer {
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    margin-top: 16px;
+  }
+
+  /* COMO FUNCIONA */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 18px;
+    padding: 24px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .step:hover { border-color: rgba(0,193,106,0.25); transform: translateX(4px); }
+
+  .step-num {
+    min-width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(0,193,106,0.15);
+    border: 1px solid rgba(0,193,106,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    color: var(--green);
+  }
+
+  .step-info h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .step-info p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.5;
+  }
+
+  .step-time {
+    display: inline-block;
+    background: rgba(0,193,106,0.12);
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-top: 8px;
+  }
+
+  /* VANTAGENS */
+  .vantagens-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .vantagem {
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 18px;
+    padding: 24px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .vantagem:hover { border-color: rgba(0,193,106,0.2); transform: translateY(-2px); }
+
+  .vantagem-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(0,193,106,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+
+  .vantagem h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .vantagem p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.5;
+  }
+
+  /* DEPOIMENTOS */
+  .depoimentos-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .depoimento {
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 18px;
+    padding: 24px;
+  }
+
+  .depoimento-stars {
+    color: var(--gold);
+    font-size: 14px;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+  }
+
+  .depoimento-text {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+
+  .depoimento-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .depoimento-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 16px;
+    color: var(--white);
+  }
+
+  .depoimento-name {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .depoimento-detail {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    margin-top: 2px;
+  }
+
+  .depoimento-valor {
+    margin-left: auto;
+    text-align: right;
+  }
+
+  .depoimento-valor .amount {
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    color: var(--green);
+    font-size: 16px;
+  }
+
+  .depoimento-valor .tempo {
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* FAQ */
+  .faq-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .faq-item {
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .faq-item:hover { border-color: rgba(255,255,255,0.12); }
+
+  .faq-question {
+    width: 100%;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    font-family: 'Sora', sans-serif;
+    gap: 16px;
+  }
+
+  .faq-icon {
+    min-width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: transform 0.3s, background 0.3s;
+  }
+
+  .faq-item.open .faq-icon { transform: rotate(45deg); background: rgba(0,193,106,0.2); border-color: var(--green); color: var(--green); }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 24px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+  }
+
+  .faq-item.open .faq-answer { max-height: 200px; padding: 0 24px 20px; }
+
+  /* CTA FINAL */
+  .cta-final {
+    background: linear-gradient(135deg, rgba(0,193,106,0.15), rgba(0,153,80,0.08));
+    border: 1px solid rgba(0,193,106,0.2);
+    border-radius: 28px;
+    padding: 60px 40px;
+    text-align: center;
+    margin: 0 24px 80px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-final::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0,193,106,0.1), transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-final h2 {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+
+  .cta-final p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 36px;
+  }
+
+  .cta-final .guarantee {
+    margin-top: 20px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 32px 24px;
+    text-align: center;
+    font-size: 13px;
+    color: rgba(255,255,255,0.25);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  /* WHATSAPP FLOAT */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 200;
+    text-decoration: none;
+  }
+
+  .whatsapp-float .wpp-tooltip {
+    background: var(--white);
+    color: var(--dark);
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 10px 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(10px);
+    animation: tooltipIn 0.5s ease 2s forwards;
+  }
+
+  @keyframes tooltipIn {
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .whatsapp-float .wpp-btn {
+    width: 60px;
+    height: 60px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .whatsapp-float:hover .wpp-btn { transform: scale(1.1); }
+  .whatsapp-float .wpp-btn svg { width: 32px; height: 32px; fill: white; }
+
+  /* MOBILE CTA FIXO */
+  .mobile-cta {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--dark2);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 12px 20px;
+    z-index: 150;
+    text-align: center;
+    backdrop-filter: blur(12px);
+  }
+
+  .mobile-cta .btn-cta {
+    width: 100%;
+    justify-content: center;
+    font-size: 15px;
+    padding: 16px 24px;
+  }
+
+  @media (max-width: 640px) {
+    .mobile-cta { display: block; }
+    .whatsapp-float { bottom: 90px; }
+    .sim-resultado { grid-template-columns: 1fr; }
+    .sim-item.destaque { grid-column: 1; }
+    .cta-final { padding: 40px 24px; margin: 0 16px 100px; }
+    .trust-badges { gap: 16px; }
+    .depoimento-author { flex-wrap: wrap; }
+    .depoimento-valor { margin-left: 52px; margin-top: -4px; }
+    footer { padding-bottom: 100px; }
+  }
+
+  @media (min-width: 641px) {
+    .depoimentos-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    .depoimentos-grid .depoimento:last-child {
+      grid-column: 1 / -1;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- BARRA DE URGÊNCIA -->
+<div class="urgency-bar">
+  <span id="counter-hoje">847</span> pessoas anteciparam seu FGTS hoje &mdash; Vagas limitadas para abril
+</div>
+
+<header>
+  <div class="logo">FGTS<span>Facil</span></div>
+  <a href="#simular" class="header-cta">Simular Gratis</a>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">
+    <div class="dot-pulse"></div>
+    Aprovacao em minutos
+  </div>
+  <h1>Seu FGTS na sua conta <span class="highlight">hoje,</span> nao daqui anos</h1>
+  <p>Antecipe ate 10 anos do seu saldo sem burocracia, sem consultar CPF e sem sair de casa. Dinheiro via PIX em minutos.</p>
+  <div class="hero-cta-wrap">
+    <a href="#simular" class="btn-cta">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+      Simular agora &mdash; e gratis
+    </a>
+  </div>
+
+  <div class="social-proof">
+    <div class="avatars">
+      <div class="avatar avatar-1">M</div>
+      <div class="avatar avatar-2">A</div>
+      <div class="avatar avatar-3">R</div>
+      <div class="avatar avatar-4">C</div>
+      <div class="avatar avatar-5">+</div>
+    </div>
+    <span><span class="live-counter" id="live-count">12.847</span> ja anteciparam este mes</span>
+  </div>
+
+  <div class="trust-badges">
+    <div class="trust-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Dados protegidos
+    </div>
+    <div class="trust-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      Regulamentado pelo BACEN
+    </div>
+    <div class="trust-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      PIX em minutos
+    </div>
+  </div>
+</section>
+
+<!-- SIMULADOR -->
+<section class="section reveal" id="simular">
+  <div class="section-label">Simulador</div>
+  <h2>Descubra quanto voce pode receber</h2>
+  <div class="simulador-card">
+    <div class="sim-badge">Simulacao 100% gratuita</div>
+    <div class="slider-wrapper">
+      <p class="sim-label">Saldo aproximado do FGTS</p>
+      <div class="slider-value" id="saldo-display">R$ 5.000</div>
+      <input type="range" id="saldo-slider" min="1000" max="50000" step="500" value="5000">
+    </div>
+    <div class="slider-wrapper">
+      <p class="sim-label">Parcelas a antecipar (anos)</p>
+      <div class="slider-value" id="anos-display">5 anos</div>
+      <input type="range" id="anos-slider" min="1" max="10" step="1" value="5">
+    </div>
+    <div class="sim-divider"></div>
+    <div class="sim-resultado">
+      <div class="sim-item destaque">
+        <p class="label">Voce recebe na conta via PIX</p>
+        <p class="value" id="valor-receber">R$ 4.250</p>
+      </div>
+      <div class="sim-item">
+        <p class="label">Taxa mensal a partir de</p>
+        <p class="value">1,49%</p>
+      </div>
+      <div class="sim-item">
+        <p class="label">Aprovacao em ate</p>
+        <p class="value" style="color: var(--green);">5 min</p>
+      </div>
+    </div>
+    <div class="btn-sim">
+      <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Quero%20antecipar%20meu%20FGTS.%20Pode%20me%20ajudar%3F" class="btn-cta" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        Quero antecipar meu FGTS agora
+      </a>
+    </div>
+    <p class="sim-disclaimer">Valores simulados. O valor final depende da analise do seu saldo.</p>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section class="section reveal">
+  <div class="section-label">Processo</div>
+  <h2>3 passos para ter seu dinheiro</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-info">
+        <h3>Fale com a gente pelo WhatsApp</h3>
+        <p>Informe seus dados basicos. Sem documentos complicados, sem filas, sem agencia bancaria.</p>
+        <span class="step-time">~2 minutos</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-info">
+        <h3>Aprovacao automatica em minutos</h3>
+        <p>Nossa tecnologia consulta seu saldo na Caixa e aprova sua antecipacao na hora. CPF negativado nao e problema.</p>
+        <span class="step-time">~5 minutos</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-info">
+        <h3>Dinheiro na conta via PIX</h3>
+        <p>Apos a assinatura digital do contrato, o valor e transferido via PIX para qualquer banco. Sem espera.</p>
+        <span class="step-time">Mesmo dia</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VANTAGENS -->
+<section class="section reveal">
+  <div class="section-label">Vantagens</div>
+  <h2>Por que mais de 12 mil pessoas escolheram a FGTSFacil?</h2>
+  <div class="vantagens-grid">
+    <div class="vantagem">
+      <div class="vantagem-icon">⚡</div>
+      <h3>Aprovacao Imediata</h3>
+      <p>Sem analise de credito. Seu FGTS e a garantia, nao o seu historico financeiro.</p>
+    </div>
+    <div class="vantagem">
+      <div class="vantagem-icon">🔒</div>
+      <h3>100% Seguro</h3>
+      <p>Operacao regulamentada pelo Banco Central. Seus dados protegidos com criptografia.</p>
+    </div>
+    <div class="vantagem">
+      <div class="vantagem-icon">📱</div>
+      <h3>Tudo pelo celular</h3>
+      <p>Sem burocracia, sem agencia, sem filas. Resolve em minutos pelo WhatsApp.</p>
+    </div>
+    <div class="vantagem">
+      <div class="vantagem-icon">💸</div>
+      <h3>Negativado? Pode!</h3>
+      <p>CPF restrito nao e impedimento. Qualquer trabalhador CLT com saldo pode antecipar.</p>
+    </div>
+    <div class="vantagem">
+      <div class="vantagem-icon">🏦</div>
+      <h3>Qualquer Banco</h3>
+      <p>Receba via PIX na conta de qualquer banco. Nao precisa ter conta na Caixa.</p>
+    </div>
+    <div class="vantagem">
+      <div class="vantagem-icon">📋</div>
+      <h3>Sem Comprovante de Renda</h3>
+      <p>Nao pedimos holerite, IR ou qualquer comprovacao. Basta ter saldo no FGTS.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="section reveal">
+  <div class="section-label">Depoimentos</div>
+  <h2>Quem ja antecipou, recomenda</h2>
+  <div class="depoimentos-grid">
+    <div class="depoimento">
+      <div class="depoimento-stars">★★★★★</div>
+      <p class="depoimento-text">"Achei que era golpe, mas fiz pelo WhatsApp e em 1 hora o dinheiro ja estava na minha conta. Muito rapido e seguro!"</p>
+      <div class="depoimento-author">
+        <div class="depoimento-avatar" style="background: #4A90D9;">M</div>
+        <div>
+          <div class="depoimento-name">Marcos S.</div>
+          <div class="depoimento-detail">Sao Paulo, SP</div>
+        </div>
+        <div class="depoimento-valor">
+          <div class="amount">R$ 8.200</div>
+          <div class="tempo">recebeu em 47min</div>
+        </div>
+      </div>
+    </div>
+    <div class="depoimento">
+      <div class="depoimento-stars">★★★★★</div>
+      <p class="depoimento-text">"Estava negativada e precisando de dinheiro urgente. Consegui antecipar meu FGTS sem nenhum problema. Recomendo demais!"</p>
+      <div class="depoimento-author">
+        <div class="depoimento-avatar" style="background: #E9573F;">A</div>
+        <div>
+          <div class="depoimento-name">Ana Paula R.</div>
+          <div class="depoimento-detail">Rio de Janeiro, RJ</div>
+        </div>
+        <div class="depoimento-valor">
+          <div class="amount">R$ 4.500</div>
+          <div class="tempo">recebeu em 1h20</div>
+        </div>
+      </div>
+    </div>
+    <div class="depoimento">
+      <div class="depoimento-stars">★★★★★</div>
+      <p class="depoimento-text">"Ja e a segunda vez que antecipo com a FGTSFacil. Processo super simples, tudo pelo celular. Nao precisa ir em agencia nenhuma."</p>
+      <div class="depoimento-author">
+        <div class="depoimento-avatar" style="background: #8CC152;">R</div>
+        <div>
+          <div class="depoimento-name">Roberto L.</div>
+          <div class="depoimento-detail">Belo Horizonte, MG</div>
+        </div>
+        <div class="depoimento-valor">
+          <div class="amount">R$ 12.350</div>
+          <div class="tempo">recebeu em 35min</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section reveal">
+  <div class="section-label">Duvidas</div>
+  <h2>Perguntas frequentes</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Quem pode antecipar o FGTS?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">Qualquer trabalhador com carteira assinada (CLT) que possua saldo no FGTS e tenha aderido ao saque-aniversario. Nao importa se o CPF esta negativado ou com restricoes.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Quando o dinheiro cai na conta?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">Apos a aprovacao e assinatura digital do contrato, o valor e transferido via PIX em ate 2 horas. Na maioria dos casos, e na mesma hora.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Vou perder meu FGTS?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">Nao. Voce esta antecipando o valor que receberia nos proximos anos pelo saque-aniversario. O desconto e feito automaticamente nas parcelas anuais. Em caso de demissao, voce continua tendo direito a multa de 40%.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Tem algum custo para simular?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">Absolutamente nenhum. A simulacao e 100% gratuita e sem compromisso. Voce so decide se quer prosseguir apos ver o valor disponivel.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Preciso ir em alguma agencia?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">Nao. Todo o processo e 100% digital, feito pelo WhatsApp. A assinatura do contrato tambem e digital. Voce resolve tudo sem sair de casa.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Qual a taxa de juros?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">As taxas variam a partir de 1,49% ao mes, dependendo do valor e prazo da antecipacao. Na simulacao voce ve o valor exato que vai receber, sem surpresas.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<div class="cta-final reveal">
+  <h2>Seu dinheiro esta parado. Use ele <span style="color: var(--green);">agora.</span></h2>
+  <p>Simule sem compromisso. Aprovacao em minutos. PIX na hora.</p>
+  <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Quero%20antecipar%20meu%20FGTS.%20Pode%20me%20ajudar%3F" class="btn-cta" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    Quero meu FGTS agora pelo WhatsApp
+  </a>
+  <div class="guarantee">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Simulacao gratuita &middot; Sem compromisso &middot; Dados protegidos
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 FGTSFacil &middot; Operacao regulamentada &middot; Todos os direitos reservados</p>
+  <p style="margin-top:8px">Este servico e de correspondencia financeira. As operacoes sao realizadas por instituicoes financeiras parceiras regulamentadas pelo Banco Central do Brasil.</p>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Quero%20antecipar%20meu%20FGTS.%20Pode%20me%20ajudar%3F" class="whatsapp-float" target="_blank">
+  <span class="wpp-tooltip">Fale conosco!</span>
+  <div class="wpp-btn">
+    <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+  </div>
+</a>
+
+<!-- MOBILE CTA FIXO -->
+<div class="mobile-cta">
+  <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Quero%20antecipar%20meu%20FGTS.%20Pode%20me%20ajudar%3F" class="btn-cta" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    Antecipar meu FGTS agora
+  </a>
+</div>
+
+<script>
+  // SIMULADOR
+  const saldoSlider = document.getElementById('saldo-slider');
+  const anosSlider = document.getElementById('anos-slider');
+  const saldoDisplay = document.getElementById('saldo-display');
+  const anosDisplay = document.getElementById('anos-display');
+  const valorReceber = document.getElementById('valor-receber');
+
+  function fmt(n) {
+    return 'R$ ' + Math.round(n).toLocaleString('pt-BR');
+  }
+
+  // Tabela simplificada saque-aniversário (% do saldo + parcela adicional)
+  function calcSaqueAniversario(saldo) {
+    if (saldo <= 500) return saldo * 0.5 + 0;
+    if (saldo <= 1000) return saldo * 0.4 + 50;
+    if (saldo <= 5000) return saldo * 0.3 + 150;
+    if (saldo <= 10000) return saldo * 0.2 + 650;
+    if (saldo <= 15000) return saldo * 0.15 + 1150;
+    if (saldo <= 20000) return saldo * 0.1 + 1900;
+    return saldo * 0.05 + 2900;
+  }
+
+  function calcular() {
+    const saldo = parseInt(saldoSlider.value);
+    const anos = parseInt(anosSlider.value);
+    const taxaMensal = 0.0149;
+
+    let valorTotal = 0;
+    for (let i = 1; i <= anos; i++) {
+      const parcela = calcSaqueAniversario(saldo);
+      const meses = i * 12;
+      const valorPresente = parcela / Math.pow(1 + taxaMensal, meses);
+      valorTotal += valorPresente;
+    }
+
+    saldoDisplay.textContent = fmt(saldo);
+    anosDisplay.textContent = anos + (anos === 1 ? ' ano' : ' anos');
+    valorReceber.textContent = fmt(valorTotal);
+  }
+
+  saldoSlider.addEventListener('input', calcular);
+  anosSlider.addEventListener('input', calcular);
+  calcular();
+
+  // FAQ
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // SCROLL PROGRESS
+  window.addEventListener('scroll', function() {
+    var scrollTop = window.scrollY;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var progress = (scrollTop / docHeight) * 100;
+    document.getElementById('scrollProgress').style.width = progress + '%';
+  });
+
+  // REVEAL ON SCROLL
+  var reveals = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  reveals.forEach(function(el) { observer.observe(el); });
+
+  // CONTADOR LIVE (simula atividade)
+  var counterEl = document.getElementById('counter-hoje');
+  setInterval(function() {
+    var current = parseInt(counterEl.textContent.replace(/\./g, ''));
+    current += Math.floor(Math.random() * 3) + 1;
+    counterEl.textContent = current.toLocaleString('pt-BR');
+  }, 8000);
+</script>
+</body>
+</html>
